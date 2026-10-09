@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Portal Akademik — XII Akuntansi & Keuangan Lembaga</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F7F4EE;--surf:#fff;--ink:#0B3D2E;--mut:#5C7A6A;--line:rgba(11,61,46,.12);--forest:#0B3D2E;--f3:#1A6B4F;--cop:#B87333;--cop2:#D4924A;--sage:#E8F0EB;--amb:#FDF0DC;--ok:#DCFCE7;--okt:#166534;--wa:#FEF3C7;--wat:#92400E}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0A1A14;--surf:#112A21;--ink:#E6F1EA;--mut:#8FB09E;--line:rgba(255,255,255,.1);--forest:#1A6B4F;--f3:#4FB58A;--sage:#173A2D;--amb:#3A2A12;--ok:#12402A;--okt:#8EE3B2;--wa:#3F3210;--wat:#F1C77A}}
+:root[data-theme="dark"]{--bg:#0A1A14;--surf:#112A21;--ink:#E6F1EA;--mut:#8FB09E;--line:rgba(255,255,255,.1);--forest:#1A6B4F;--f3:#4FB58A;--sage:#173A2D;--amb:#3A2A12;--ok:#12402A;--okt:#8EE3B2;--wa:#3F3210;--wat:#F1C77A}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);min-height:100%;overflow-x:hidden}
+button,input,a{font:inherit;color:inherit}
+.hero{background:linear-gradient(135deg,#0B3D2E,#114D3A 60%,#1A6B4F);color:#fff;position:relative;overflow:hidden;padding:20px clamp(16px,5vw,48px) 70px}
+.hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0 1px,transparent 1px 28px),radial-gradient(ellipse 50% 70% at 95% 0,rgba(184,115,51,.35),transparent 65%)}
+.top{position:relative;display:flex;justify-content:space-between;align-items:center;gap:10px;max-width:1120px;margin:0 auto}
+.brand{display:flex;gap:10px;align-items:center;min-width:0}
+.logo{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,var(--cop),var(--cop2));display:grid;place-items:center;font:800 14px 'Playfair Display',serif;flex-shrink:0}
+.brand small{display:block;font-size:11px;opacity:.55;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand b{font-size:13px;white-space:nowrap}
+.icon-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:50%;width:38px;height:38px;cursor:pointer;color:#fff;font-size:16px;flex-shrink:0}
+.hb{position:relative;max-width:760px;margin:clamp(28px,6vw,56px) auto 0;text-align:center}
+.eye{display:inline-block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:6px 14px;border-radius:20px;margin-bottom:18px}
+h1{font:800 clamp(30px,7vw,64px)/1.05 'Playfair Display',serif;letter-spacing:-1px}
+h1 em{color:#F0C880}
+.hb p{margin:14px auto 0;max-width:480px;font-size:14px;line-height:1.7;opacity:.6}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(14px,4vw,40px)}
+.ctrl{margin-top:-34px;position:relative;z-index:5;background:var(--surf);border:1px solid var(--line);border-radius:20px;padding:14px;box-shadow:0 12px 40px rgba(11,61,46,.12);display:grid;gap:12px}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--sage);border-radius:13px;padding:4px;position:relative}
+.seg button{border:0;background:none;padding:11px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;color:var(--mut);position:relative;z-index:1;transition:color .25s;min-height:44px}
+.seg button.on{color:#fff}
+.seg i{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);background:linear-gradient(135deg,var(--forest),var(--f3));border-radius:10px;transition:transform .3s cubic-bezier(.4,0,.2,1)}
+.seg.g i{transform:translateX(100%)}
+.row2{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.search{flex:1;min-width:180px;background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:11px 14px;outline:none;font-size:16px;background:var(--bg)}
+.search:focus{border-color:var(--f3)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1.5px solid var(--line);background:none;border-radius:20px;padding:7px 13px;font-size:12px;font-weight:600;cursor:pointer;color:var(--mut);min-height:34px}
+.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.prog{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--mut);font-weight:600}
+.bar{flex:1;height:8px;background:var(--sage);border-radius:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cop),var(--cop2));transition:width .5s}
+.sec{margin-top:28px}
+.sec h2{font:800 clamp(20px,3.5vw,30px) 'Playfair Display',serif;margin-bottom:4px}
+.sec>p{color:var(--mut);font-size:13px;margin-bottom:14px}
+.feat{background:linear-gradient(135deg,var(--forest),#114D3A);color:#fff;border-radius:20px;padding:clamp(18px,4vw,32px);display:flex;gap:16px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.feat h3{font:800 clamp(18px,3vw,24px) 'Playfair Display',serif;margin-bottom:6px}
+.feat p{font-size:12px;opacity:.6;max-width:440px;line-height:1.6}
+.btn{display:inline-flex;align-items:center;gap:7px;border:0;border-radius:11px;padding:11px 20px;font-weight:700;font-size:13px;cursor:pointer;background:linear-gradient(135deg,var(--cop),var(--cop2));color:#fff;text-decoration:none;min-height:44px}
+.gl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin:26px 0 12px;display:flex;align-items:center;gap:10px}
+.gl::after{content:'';flex:1;height:1px;background:var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:12px}
+.card{background:var(--surf);border:1.5px solid var(--line);border-radius:15px;padding:16px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;animation:up .4s both}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(11,61,46,.12)}
+.card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--c)}
+@keyframes up{from{opacity:0;transform:translateY(14px)}}
+.u{--c:linear-gradient(90deg,#1565C0,#4A90D9)}.k{--c:linear-gradient(90deg,#1A6B4F,#A8C8B4)}.m{--c:linear-gradient(90deg,#2E7D32,#66BB6A)}.l{--c:linear-gradient(90deg,#B87333,#D4924A)}
+.ch{display:flex;gap:12px;align-items:flex-start;padding-right:30px}
+.num{width:34px;height:34px;border-radius:10px;background:var(--sage);display:grid;place-items:center;font:800 11px 'Playfair Display',serif;flex-shrink:0}
+.nm{font-weight:700;font-size:13.5px;line-height:1.35}
+.ty{font-size:11px;color:var(--mut);font-weight:600;margin-top:2px}
+.ed{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:var(--sage);cursor:pointer;font-size:12px}
+.ep{display:none;gap:6px;flex-wrap:wrap;background:var(--sage);padding:10px;border-radius:10px}
+.ep.open{display:flex}
+.ep input{flex:1;min-width:120px;border:1.5px solid var(--line);border-radius:8px;padding:9px;font-size:16px;background:var(--surf);outline:none}
+.ep button{border:0;border-radius:8px;padding:9px 12px;font-weight:700;font-size:12px;cursor:pointer;background:var(--forest);color:#fff;min-height:38px}
+.ep button.x{background:#FEE2E2;color:#991B1B}
+.cf{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.go{background:var(--forest);color:#fff;text-decoration:none;font-size:12px;font-weight:700;padding:9px 14px;border-radius:9px;min-height:36px;display:inline-flex;align-items:center;gap:6px}
+.go.off{background:var(--sage);color:var(--mut);pointer-events:none;opacity:.7}
+.bd{font-size:10px;font-weight:700;padding:3px 9px;border-radius:7px;text-transform:uppercase;background:var(--wa);color:var(--wat)}
+.bd.on{background:var(--ok);color:var(--okt)}
+.empty{text-align:center;color:var(--mut);padding:30px;font-size:14px;display:none}
+footer{margin-top:60px;background:var(--forest);color:rgba(255,255,255,.55);text-align:center;font-size:12px;line-height:2;padding:30px 16px calc(30px + env(safe-area-inset-bottom,0px))}
+footer b{color:#fff}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;background:var(--forest);color:#fff;text-decoration:none;font-size:12px;font-weight:700;padding:11px 16px;border-radius:40px;box-shadow:0 6px 22px rgba(11,61,46,.4)}
+#toast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:10px 20px;border-radius:30px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:.3s;z-index:90;max-width:90vw}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+#modal{position:fixed;inset:0;background:rgba(5,20,14,.75);backdrop-filter:blur(6px);display:grid;place-items:center;padding:16px;opacity:0;pointer-events:none;transition:.3s;z-index:80}
+#modal.open{opacity:1;pointer-events:all}
+.mb{background:var(--surf);border-radius:22px;padding:28px 22px;max-width:380px;width:100%;text-align:center}
+.mb h3{font:800 22px 'Playfair Display',serif;margin:10px 0 6px}
+.mb p{font-size:12px;color:var(--mut);line-height:1.6;margin-bottom:16px}
+.mb input{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:13px;font-size:16px;background:var(--bg);outline:none;margin-bottom:12px}
+.mb .btn{width:100%;justify-content:center}
+.err{color:#DC2626;font-size:12px;margin-top:8px;display:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="toast"></div>
+<a class="fab" href="https://alex-bahy.github.io/Dashboard-Penginputan-Nilai-Semester-Genap-TP-2025-2026/" target="_blank" rel="noopener">← Dashboard</a>
+
+<div id="modal"><div class="mb">
+  <div style="font-size:34px">🗂️</div><h3>Akses Wali Kelas</h3>
+  <p>Masukkan kata sandi untuk membuka Data Siswa XII AKL.</p>
+  <input type="password" id="pw" placeholder="Kata sandi…" autocomplete="off">
+  <button class="btn" id="unlock">🔓 Masuk</button>
+  <div class="err" id="err">⚠ Kata sandi salah.</div>
+</div></div>
+
+<header class="hero">
+  <div class="top">
+    <div class="brand"><div class="logo">XII</div><div><b>XII Akuntansi &amp; Keuangan Lembaga</b><small>SMK Negeri 1 Maluku Tengah · Portal Akademik</small></div></div>
+    <button class="icon-btn" id="theme" aria-label="Ganti tema">🌓</button>
+  </div>
+  <div class="hb">
+    <span class="eye">TP 2026/2027 · <span id="semLbl">Ganjil</span></span>
+    <h1>Nilai &amp; Rekap<br><em>Kelas XII AKL</em></h1>
+    <p>Input nilai semua mata pelajaran dan rekap ledger, untuk Semester Ganjil dan Genap dalam satu portal.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="ctrl">
+    <div class="seg" id="seg">
+      <i></i>
+      <button class="on" data-s="ganjil">📘 Semester Ganjil</button>
+      <button data-s="genap">📗 Semester Genap</button>
+    </div>
+    <div class="row2">
+      <input class="search" id="q" type="search" placeholder="🔎 Cari mata pelajaran…">
+      <div class="chips" id="chips">
+        <button class="chip on" data-f="all">Semua</button>
+        <button class="chip" data-f="umum">Umum</button>
+        <button class="chip" data-f="kejuruan">Kejuruan</button>
+        <button class="chip" data-f="mulok">Mulok</button>
+        <button class="chip" data-f="ledger">Ledger</button>
+      </div>
+    </div>
+    <div class="prog"><span id="pt">0/0 link aktif</span><div class="bar"><i id="pb"></i></div></div>
+  </div>
+
+  <section class="sec">
+    <h2>Data Siswa <span style="color:var(--cop);font-style:italic">XII AKL</span></h2>
+    <p>Khusus Wali Kelas: profil, absensi, dan catatan administratif.</p>
+    <div class="feat">
+      <div><h3>Database Siswa XII AKL</h3><p>Input dan perbarui data lengkap siswa. Dilindungi kata sandi Wali Kelas.</p></div>
+      <button class="btn" id="openData">🔐 Buka Data Siswa</button>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>Nilai <span style="color:var(--cop);font-style:italic">Mata Pelajaran</span></h2>
+    <p>Klik ✏️ pada kartu untuk menambah atau mengubah link GitHub Pages.</p>
+    <div id="list"></div>
+    <div class="empty" id="empty">Tidak ada mata pelajaran yang cocok.</div>
+  </section>
+</main>
+
+<footer><b>Kelas XII Akuntansi &amp; Keuangan Lembaga</b><br>SMK Negeri 1 Maluku Tengah · Tahun Pelajaran 2026/2027<br>Data Siswa — Wali Kelas · Input Nilai — semua guru mapel</footer>
+
+<script>
+const PASS='SMKBisa';
+const DATA_URL='https://alex-bahy.github.io/Data-Siswa-XIIAKL-2026-2027/';
+/* LINK PERMANEN (semua perangkat): isi per semester. Format 'ID':'https://...' */
+const DEFAULTS={
+  ganjil:{
+    // '01':'https://alex-bahy.github.io/DN-Pend.-Agama-XIIAKL-Sem-Ganjil-2026-2027/',
+  },
+  genap:{
+    // '01':'https://alex-bahy.github.io/DN-Pend.-Agama-XIIAKL-Sem-Genap-2026-2027/',
+  }
+};
+const SUBJ=[
+ {id:'01',n:'Pendidikan Agama dan Budi Pekerti',g:'umum',c:'u'},
+ {id:'02',n:'Pendidikan Pancasila',g:'umum',c:'u'},
+ {id:'03',n:'Bahasa Indonesia',g:'umum',c:'u'},
+ {id:'04',n:'Pendidikan Jasmani, Olahraga dan Kesehatan',g:'umum',c:'u'},
+ {id:'05',n:'Sejarah',g:'umum',c:'u'},
+ {id:'06',n:'Matematika',g:'kejuruan',c:'k'},
+ {id:'07',n:'Bahasa Inggris',g:'kejuruan',c:'k'},
+ {id:'08',n:'Konsentrasi Keahlian',g:'kejuruan',c:'k'},
+ {id:'09',n:'Projek Kreatif dan Kewirausahaan',g:'kejuruan',c:'k'},
+ {id:'10',n:'Mata Pelajaran Pilihan',g:'kejuruan',c:'k'},
+ {id:'11',n:'Muatan Lokal',g:'mulok',c:'m'},
+ {id:'L1',n:'Ledger Nilai — Rekap Semua Mata Pelajaran',g:'ledger',c:'l'}
+];
+const GL={umum:['🎓','Mata Pelajaran Umum'],kejuruan:['⚙️','Mata Pelajaran Kejuruan'],mulok:['🌿','Muatan Lokal'],ledger:['📒','Ledger & Rekap Nilai']};
+const TY={umum:'Mapel Umum',kejuruan:'Mapel Kejuruan',mulok:'Muatan Lokal',ledger:'Ledger & Rekap'};
+const $=s=>document.querySelector(s);
+let sem='ganjil',flt='all',qry='';
+const SK=s=>'xiiakl_links_'+s;
+function load(){try{return JSON.parse(localStorage.getItem(SK(sem))||'{}')}catch(e){return{}}}
+function save(d){try{localStorage.setItem(SK(sem),JSON.stringify(d))}catch(e){}}
+const url=id=>load()[id]||(DEFAULTS[sem]||{})[id]||'';
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('show'),2400)}
+function card(s,i){
+  const u=url(s.id),ph=s.g==='ledger'?'https://username.github.io/ledger-XIIAKL/':'https://username.github.io/nama-repo/';
+  return `<div class="card ${s.c}" style="animation-delay:${i*40}ms">
+  <button class="ed" data-ed="${s.id}" aria-label="Edit link">✏️</button>
+  <div class="ch"><div class="num">${s.g==='ledger'?'📒':s.id}</div><div><div class="nm">${s.n}</div><div class="ty">${TY[s.g]} · ${sem==='ganjil'?'Ganjil':'Genap'}</div></div></div>
+  <div class="ep" id="ep-${s.id}"><input type="url" id="in-${s.id}" placeholder="${ph}" value="${u}"><button data-sv="${s.id}">Simpan</button><button class="x" data-cl="${s.id}">✕</button></div>
+  <div class="cf"><a class="go ${u?'':'off'}" ${u?`href="${u}" target="_blank" rel="noopener"`:''}>${s.g==='ledger'?'Buka Ledger':'Input Nilai'} →</a><span class="bd ${u?'on':''}">${u?'Aktif ✓':'Segera'}</span></div></div>`;
+}
+function render(){
+  const list=SUBJ.filter(s=>(flt==='all'||s.g===flt)&&s.n.toLowerCase().includes(qry));
+  let h='',idx=0;
+  Object.keys(GL).forEach(g=>{
+    const items=list.filter(s=>s.g===g);
+    if(!items.length)return;
+    h+=`<div class="gl">${GL[g][0]} ${GL[g][1]}</div><div class="grid">${items.map(s=>card(s,idx++)).join('')}</div>`;
+  });
+  $('#list').innerHTML=h;
+  $('#empty').style.display=list.length?'none':'block';
+  const on=SUBJ.filter(s=>url(s.id)).length;
+  $('#pt').textContent=`${on}/${SUBJ.length} link aktif`;
+  $('#pb').style.width=(on/SUBJ.length*100)+'%';
+}
+$('#seg').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  sem=b.dataset.s;
+  document.querySelectorAll('#seg button').forEach(x=>x.classList.toggle('on',x===b));
+  $('#seg').classList.toggle('g',sem==='genap');
+  $('#semLbl').textContent=sem==='ganjil'?'Ganjil':'Genap';
+  render();toast('Semester '+(sem==='ganjil'?'Ganjil':'Genap'));
+});
+$('#chips').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  flt=b.dataset.f;
+  document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===b));
+  render();
+});
+$('#q').addEventListener('input',e=>{qry=e.target.value.trim().toLowerCase();render()});
+$('#list').addEventListener('click',e=>{
+  const t=e.target;
+  if(t.dataset.ed){const p=$('#ep-'+t.dataset.ed),w=p.classList.contains('open');
+    document.querySelectorAll('.ep.open').forEach(x=>x.classList.remove('open'));
+    if(!w){p.classList.add('open');p.querySelector('input').focus()}}
+  if(t.dataset.sv){const id=t.dataset.sv;let v=$('#in-'+id).value.trim();
+    if(!v){toast('⚠️ Link tidak boleh kosong');return}
+    if(!/^https?:/.test(v))v='https://'+v;
+    const d=load();d[id]=v;save(d);render();
+    const snip=`'${id}':'${v}',`;
+    if(navigator.clipboard)navigator.clipboard.writeText(snip).catch(()=>{});
+    toast('✅ Tersimpan. Baris DEFAULTS disalin agar permanen');}
+  if(t.dataset.cl){const d=load();delete d[t.dataset.cl];save(d);render();toast('🗑️ Link dihapus')}
+});
+/* modal */
+const modal=$('#modal');
+function closeM(){modal.classList.remove('open');$('#pw').value='';$('#err').style.display='none'}
+$('#openData').onclick=()=>{modal.classList.add('open');setTimeout(()=>$('#pw').focus(),150)};
+modal.addEventListener('click',e=>{if(e.target===modal)closeM()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM()});
+function unlock(){if($('#pw').value===PASS){closeM();window.open(DATA_URL,'_blank')}else{$('#err').style.display='block';$('#pw').value=''}}
+$('#unlock').onclick=unlock;
+$('#pw').addEventListener('keydown',e=>{if(e.key==='Enter')unlock()});
+/* theme */
+$('#theme').onclick=()=>{
+  const r=document.documentElement,cur=r.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+  r.dataset.theme=cur==='dark'?'light':'dark';
+};
+render();
+</script>
+</body>
+</html>
