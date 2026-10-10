@@ -57,7 +57,7 @@ h1 em{color:#F0C880}
 .card:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(11,61,46,.12)}
 .card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--c)}
 @keyframes up{from{opacity:0;transform:translateY(14px)}}
-.u{--c:linear-gradient(90deg,#1565C0,#4A90D9)}.k{--c:linear-gradient(90deg,#1A6B4F,#A8C8B4)}.m{--c:linear-gradient(90deg,#2E7D32,#66BB6A)}.l{--c:linear-gradient(90deg,#B87333,#D4924A)}
+.u{--c:linear-gradient(90deg,#1565C0,#4A90D9)}.k{--c:linear-gradient(90deg,#1A6B4F,#A8C8B4)}.l{--c:linear-gradient(90deg,#B87333,#D4924A)}
 .ch{display:flex;gap:12px;align-items:flex-start;padding-right:30px}
 .num{width:34px;height:34px;border-radius:10px;background:var(--sage);display:grid;place-items:center;font:800 11px 'Playfair Display',serif;flex-shrink:0}
 .nm{font-weight:700;font-size:13.5px;line-height:1.35}
@@ -127,7 +127,6 @@ footer b{color:#fff}
         <button class="chip on" data-f="all">Semua</button>
         <button class="chip" data-f="umum">Umum</button>
         <button class="chip" data-f="kejuruan">Kejuruan</button>
-        <button class="chip" data-f="mulok">Mulok</button>
         <button class="chip" data-f="ledger">Ledger</button>
       </div>
     </div>
@@ -145,7 +144,7 @@ footer b{color:#fff}
 
   <section class="sec">
     <h2>Nilai <span style="color:var(--cop);font-style:italic">Mata Pelajaran</span></h2>
-    <p>Klik ✏️ pada kartu untuk menambah atau mengubah link GitHub Pages.</p>
+    <p>Klik ✏️ pada kartu untuk mengubah link GitHub Pages.</p>
     <div id="list"></div>
     <div class="empty" id="empty">Tidak ada mata pelajaran yang cocok.</div>
   </section>
@@ -155,35 +154,37 @@ footer b{color:#fff}
 
 <script>
 const PASS='SMKBisa';
-const DATA_URL='https://alex-bahy.github.io/Data-Siswa-XIIAKL-2026-2027/';
-/* LINK PERMANEN (semua perangkat): isi per semester. Format 'ID':'https://...' */
-const DEFAULTS={
-  ganjil:{
-    // '01':'https://alex-bahy.github.io/DN-Pend.-Agama-XIIAKL-Sem-Ganjil-2026-2027/',
-  },
-  genap:{
-    // '01':'https://alex-bahy.github.io/DN-Pend.-Agama-XIIAKL-Sem-Genap-2026-2027/',
-  }
+const DATA_URL='https://alex-bahy.github.io/Data-Siswa-XIIAKL-TP-2026-2027/';
+/* LINK PERMANEN: satu link per mapel untuk Semester 5-6 (berlaku untuk Ganjil & Genap) */
+const LINKS={
+  '01':'https://alex-bahy.github.io/DN-Pend.-Agama-XIIAKL-5-6-TP-2026-2027/',
+  '02':'https://alex-bahy.github.io/DN-Pend.-Pancasila-XIIAKL-5-6-TP-2026-2027/',
+  '03':'https://alex-bahy.github.io/DN-B.-Indonesia-XIIAKL-5-6-TP-2026-2027/',
+  '04':'https://alex-bahy.github.io/DN-Matematika-XIIAKL-5-6-TP-2026-2027/',
+  '05':'https://alex-bahy.github.io/DN-B.-Inggris-XIIAKL-5-6-TP-2026-2027/',
+  '06':'https://alex-bahy.github.io/DN-Konsentrasi-Keahlian-XIIAKL-5-6-TP-2026-2027/',
+  '07':'https://alex-bahy.github.io/DN-Kreatifitas-Inovasi-Kewirausahaan-XIIAKL-5-6-TP-2026-2027/',
+  '08':'https://alex-bahy.github.io/DN-Mapel-Pilihan-XIIAKL-5-6-TP-2026-2027/',
+  'L1':'https://alex-bahy.github.io/DN-Ledger-XIIAKL-5-6-TP-2026-2027/'
 };
+const DEFAULTS={ganjil:LINKS,genap:LINKS};
+/* Mapel yang tidak ada di kelas XII (PJOK, Sejarah, Muatan Lokal) sudah dihapus */
 const SUBJ=[
  {id:'01',n:'Pendidikan Agama dan Budi Pekerti',g:'umum',c:'u'},
  {id:'02',n:'Pendidikan Pancasila',g:'umum',c:'u'},
  {id:'03',n:'Bahasa Indonesia',g:'umum',c:'u'},
- {id:'04',n:'Pendidikan Jasmani, Olahraga dan Kesehatan',g:'umum',c:'u'},
- {id:'05',n:'Sejarah',g:'umum',c:'u'},
- {id:'06',n:'Matematika',g:'kejuruan',c:'k'},
- {id:'07',n:'Bahasa Inggris',g:'kejuruan',c:'k'},
- {id:'08',n:'Konsentrasi Keahlian',g:'kejuruan',c:'k'},
- {id:'09',n:'Projek Kreatif dan Kewirausahaan',g:'kejuruan',c:'k'},
- {id:'10',n:'Mata Pelajaran Pilihan',g:'kejuruan',c:'k'},
- {id:'11',n:'Muatan Lokal',g:'mulok',c:'m'},
+ {id:'04',n:'Matematika',g:'kejuruan',c:'k'},
+ {id:'05',n:'Bahasa Inggris',g:'kejuruan',c:'k'},
+ {id:'06',n:'Konsentrasi Keahlian',g:'kejuruan',c:'k'},
+ {id:'07',n:'Kreativitas, Inovasi, dan Kewirausahaan',g:'kejuruan',c:'k'},
+ {id:'08',n:'Mata Pelajaran Pilihan',g:'kejuruan',c:'k'},
  {id:'L1',n:'Ledger Nilai — Rekap Semua Mata Pelajaran',g:'ledger',c:'l'}
 ];
-const GL={umum:['🎓','Mata Pelajaran Umum'],kejuruan:['⚙️','Mata Pelajaran Kejuruan'],mulok:['🌿','Muatan Lokal'],ledger:['📒','Ledger & Rekap Nilai']};
-const TY={umum:'Mapel Umum',kejuruan:'Mapel Kejuruan',mulok:'Muatan Lokal',ledger:'Ledger & Rekap'};
+const GL={umum:['🎓','Mata Pelajaran Umum'],kejuruan:['⚙️','Mata Pelajaran Kejuruan'],ledger:['📒','Ledger & Rekap Nilai']};
+const TY={umum:'Mapel Umum',kejuruan:'Mapel Kejuruan',ledger:'Ledger & Rekap'};
 const $=s=>document.querySelector(s);
 let sem='ganjil',flt='all',qry='';
-const SK=s=>'xiiakl_links_'+s;
+const SK=s=>'xiiakl_links_v2_'+s;
 function load(){try{return JSON.parse(localStorage.getItem(SK(sem))||'{}')}catch(e){return{}}}
 function save(d){try{localStorage.setItem(SK(sem),JSON.stringify(d))}catch(e){}}
 const url=id=>load()[id]||(DEFAULTS[sem]||{})[id]||'';
@@ -236,7 +237,7 @@ $('#list').addEventListener('click',e=>{
     const d=load();d[id]=v;save(d);render();
     const snip=`'${id}':'${v}',`;
     if(navigator.clipboard)navigator.clipboard.writeText(snip).catch(()=>{});
-    toast('✅ Tersimpan. Baris DEFAULTS disalin agar permanen');}
+    toast('✅ Tersimpan. Baris LINKS disalin agar permanen');}
   if(t.dataset.cl){const d=load();delete d[t.dataset.cl];save(d);render();toast('🗑️ Link dihapus')}
 });
 /* modal */
